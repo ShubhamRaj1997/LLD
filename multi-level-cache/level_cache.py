@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from collections import OrderedDict
 
 
@@ -61,7 +62,7 @@ class LevelCache(object):
         return write_time
 
 
-class CacheStrategy(object):
+class CacheStrategy(ABC):
     def __init__(self, level=None, size=10):
         self.__data = OrderedDict()
         self.__level = level
@@ -72,6 +73,14 @@ class CacheStrategy(object):
 
     def does_key_val_pair_exist(self, key, val):
         return self.__data.get(key) == val
+
+    @abstractmethod
+    def read(self, key):
+        pass
+
+    @abstractmethod
+    def write(self, key, val):
+        pass
 
 
 class LRUCacheStrategy(CacheStrategy):
