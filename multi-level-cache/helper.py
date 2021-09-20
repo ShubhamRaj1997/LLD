@@ -2,7 +2,7 @@ from pprint import pprint
 
 from level_cache import *
 from stats import Stats
-
+from level_cache_data import LevelCacheData
 
 def inp(msg):
     return int(input(msg + ":\n"))
@@ -24,12 +24,12 @@ if __name__ == "__main__":
     # create levels
     caches = []
     for i in range(0, cache_levels):
-        caches.append(LevelCache(i + 1, int(capacities[i]), int(read_times[i]), int(write_times[i])))
+        caches.append(LevelCache(i + 1, LevelCacheData(int(read_times[i]), int(write_times[i]), int(capacities[i]))))
+    caches.append(LastLevelCache())
     # add next and prev
     stats = Stats(10)
     for i in range(0, cache_levels):
-        caches[i].next_level = None if i >= cache_levels - 1 else caches[i + 1]
-        caches[i].last_level = None if not i else caches[i - 1]
+        caches[i].next_level = caches[i+1]
         pprint(vars(caches[i]))
     while 1:
         command = input("type WRITE KEY VAL for writing\n type READ KEY for reading\n"
