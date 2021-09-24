@@ -21,7 +21,7 @@ class Account(object):
 
 
 # separate out buyer and seller , although Seller could have inherited all the methods of buyer as well
-# since it can be  a buyer as well, but let us stick to different acoounts, otherwise each seller account will have
+# since it can be  a buyer as well, but let us stick to different accounts, otherwise each seller account will have
 # to implement the methods and there won't be different customer id, which in turn create problems whenever we want
 # to handle them independently of each other, like seller will receive some internal notifications from company
 # related to GST data or stats, but your customer don't need to be there
@@ -50,7 +50,6 @@ class Buyer(object):
     def add_review(self, title, message, product_id, rating):
         pr = ProductReview(product_id, self._id, title, rating, message )
         self.__reviews.append(pr.id)
-
 
 
 class Seller(object):

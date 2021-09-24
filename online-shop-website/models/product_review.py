@@ -1,7 +1,7 @@
 import itertools
 
 
-class ProductReview(object)
+class ProductReview(object):
     itr = itertools.count()
     def __init__(self, product_id, user_id, title, rating, description):
         self.id = next(self.itr)

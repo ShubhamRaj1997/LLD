@@ -10,7 +10,6 @@ class Cart(object):
         """
         Quantity of product is available in products's item attribute whicb is a class that contains individual product
         info
-        :param product:
         :return:
         """
         self.__products.append(product_id)

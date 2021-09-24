@@ -1,7 +1,7 @@
 class BaseDao(object):
     def __init__(self):
         """
-        make connectoion to database
+        make connection to database
         """
     def find(self, query=None):
         pass
