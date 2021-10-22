@@ -45,7 +45,7 @@ class DateRange(object):
 
 class Room(Search):
     def __init__(self, room_number: int, room_type: RoomType, room_state: RoomState, booking_price: float,
-                 is_dnd: bool = False, amenities=None):
+                 is_dnd: bool = False):
         self.room_number = room_number
         self.room_type = room_type
         self.room_state = room_state
@@ -68,7 +68,7 @@ class Room(Search):
         # we can have two approaches either save for each date the reservation (new)
         #   or save for the segment of dates
         for chkin, chkout in self.reserved_dates:
-            if checkin_date in range(chkin, chkout+1) or checkout_date in range(chkin, chkout+1):
+            if checkin_date in range(chkin, chkout + 1) or checkout_date in range(chkin, chkout + 1):
                 # already booked
                 return False
         reservation = Reservation(person, ReservationStatus.PENDING, checkin_date, checkout_date, self.room_number)
