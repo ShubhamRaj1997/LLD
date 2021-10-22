@@ -1,6 +1,7 @@
 from sortedcontainers import SortedList
 
 from hotel_management.enums.enum import RoomType, RoomState, ReservationStatus
+from hotel_management.models.object_iterator import ObjectCollection
 from hotel_management.models.person import Person
 from hotel_management.models.reservation import Reservation
 from hotel_management.models.search import Search
@@ -50,12 +51,12 @@ class Room(Search):
         self.room_state = room_state
         self.booking_price = booking_price
         self.is_dnd = is_dnd
-        self.amenities = amenities or []
+        self.amenities = ObjectCollection()
         self.reserved_dates = []
         self.date_reservation_map = dict()
 
     def add_amenities(self, amenity):
-        self.amenities.add(amenity)
+        self.amenities.add_item(amenity)
 
     def checkin(self):
         pass
@@ -75,7 +76,10 @@ class Room(Search):
         self.date_reservation_map[(checkin_date, checkout_date)] = reservation
 
     def get_charge(self):
-
+        cost = 0.0
+        for amenity in self.amenities:
+            cost += amenity.get_charge()
+        return cost
 
     @staticmethod
     def search_rooms(checkin_date, checkout_date, location: str):
