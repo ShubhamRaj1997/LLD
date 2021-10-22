@@ -19,3 +19,11 @@ class AccountType(Enum):
     MANAGER = 3
     RECEPTIONIST = 4
 
+
+class ReservationStatus(Enum):
+    REQUESTED = 0
+    PENDING = 1
+    CONFIRMED = 2
+    CANCELLED = 3
+    CHECKED_IN = 4
+    CHECKED_OUT = 5

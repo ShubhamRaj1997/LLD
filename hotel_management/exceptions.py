@@ -1,0 +1,2 @@
+class EmptyDatesException(Exception):
+    pass
