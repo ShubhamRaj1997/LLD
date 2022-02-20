@@ -14,7 +14,6 @@ class Game(object):
         self.ladders = ladders
         self.dice_roll_strategy = dice_roll_strategy
 
-
     def make_move(self, player: Player):
         player.roll_dice(self.dice_roll_strategy)
         player.cur_position = self.update_with_props(player.cur_position)
